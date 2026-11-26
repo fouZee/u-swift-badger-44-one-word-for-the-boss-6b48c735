@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """One Word for the Boss — make.fun bounty entry.
 
-Writes exactly one word describing the boss to out/entry.txt (repo-local
-output dir; the harness maps this to /output/entry.txt in the sandbox).
+Writes exactly one word describing the boss to
+$MAKEFUN_OUTPUT_DIR/entry.txt (default /output/entry.txt), the file the
+grader reads.
 
 Gate (from the kit's RULES.txt): /output/entry.txt must be UTF-8 text of
 1-30 characters, not only whitespace. The judge compares entries pairwise
@@ -37,7 +38,10 @@ def validate(word: str) -> None:
 
 def main() -> int:
     validate(WORD)
-    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
+    # The grader reads $MAKEFUN_OUTPUT_DIR/entry.txt (default /output):
+    # the repo-local out/ dir is NOT mapped into the sandbox, so writing
+    # there left the entry missing and the graded run failed.
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "entry.txt")
     with open(out_path, "w", encoding="utf-8", newline="\n") as f:

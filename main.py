@@ -9,16 +9,17 @@ Gate (from the kit's RULES.txt): /output/entry.txt must be UTF-8 text of
 on funny / true / fresh, so the word must stand alone: a single word, no
 spaces, no sentence, no explanation.
 
-The word: "Delegator" — the boss who hands every task down and keeps
-only the credit. True of a habit every office knows, but a plain,
-first-reach word; kept as the starting candidate.
+The word: "Replyall" — the boss who answers every thread with Reply All,
+turning one email into a meeting for the whole company. Funny on its own,
+true of a habit every office knows, fresh (not the first word anyone
+reaches for), and it travels across kitchen, warehouse and office.
 """
 
 import os
 import re
 import sys
 
-WORD = "Delegator"
+WORD = "Replyall"
 MAX_CHARS = 30
 
 
@@ -28,9 +29,10 @@ def validate(word: str) -> None:
         raise ValueError("entry word must not be empty or whitespace-only")
     if len(word) > MAX_CHARS:
         raise ValueError(f"entry word is {len(word)} chars, over the 30-char cap")
-    if not re.fullmatch(r"[A-Za-z]+", word):
+    if not re.fullmatch(r"[A-Za-z]{1,30}", word):
         raise ValueError("entry must be a single word of letters only "
-                         "(no spaces, hyphens, digits or punctuation)")
+                         "(no spaces, hyphens, digits or punctuation); "
+                         "a hyphenated or multi-word entry loses to any single word")
 
 
 def main() -> int:

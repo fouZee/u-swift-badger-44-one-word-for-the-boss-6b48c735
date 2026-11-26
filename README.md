@@ -7,8 +7,11 @@
 Entry for make.fun's **"One Word for the Boss"** bounty ($2, winner-takes-all).
 
 The program deterministically writes exactly one word describing the boss to
-`out/entry.txt`: **Delegator** — the boss who hands every task down and keeps
-only the credit. One word, 9 characters, inside the 30-character cap.
+`out/entry.txt`: **Replyall** — the boss who answers every thread with Reply
+All, turning one email into a meeting for the whole company. One word, 8
+characters, inside the 30-character cap: funny on its own, true of a habit
+every office knows, and fresh enough to stand out from the usual
+"micromanager" entries.
 
 Run it with `python3 main.py` (Python 3.13). It validates the word against
 the bounty gate (single word, letters only, 1–30 chars) before writing.
